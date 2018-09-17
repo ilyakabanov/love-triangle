@@ -4,25 +4,18 @@
  */
 module.exports = function getLoveTrianglesCount(preferences = []) {
 
-  let countArr = [];
+  var count = 0;
 
-  for (let i = 0; i < preferences.length; i+=3) {
+  for (let i = 0; i < preferences.length; i++) {
 
-    if ( preferences[i] - preferences[i+1] == -1 && preferences[i+1] - preferences[i+2] == 2 ) {
+    var firsh = preferences[i];
+    var second = preferences[firsh - 1];
+    var last = preferences[second - 1];
 
-      let sum = preferences[i] + preferences[i+1] + preferences[i+2];
-
-      if ( !inArray(countArr, sum)) {
-        countArr.push(sum);
-      }
+    if ( firsh !== last && last == i + 1 ) {
+      count++;
     }
   }
-  return countArr.length;
-};
 
-function inArray(arr, item) {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] == item) return true;
-  }
-  return false;
-}
+  return count / 3 ;
+};
